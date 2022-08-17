@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  provider_a:
+    container_name: provider_a
+    ports:
+      - "8001:8000"
+    build:
+      context: ./provider_a
+      dockerfile: Dockerfile
+  provider_b:
+    container_name: provider_b
+    ports:
+      - "8002:8000"
+    build:
+      context: ./provider_b
+      dockerfile: Dockerfile
+  airflow:
+    container_name: airflow
+    ports:
+      - "9000:8000"
+    build:
+      context: ./airflow
+      dockerfile: Dockerfile
+  redis:
+    restart: always
+    container_name: redis
+    image: redis
+    ports:
+      - 6378:6379
